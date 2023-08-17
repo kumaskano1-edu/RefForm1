@@ -21,7 +21,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+// Handle form submission
+app.post('/submit', (req, res) => {
+  const referralCode = req.body.referral;
+  const name = req.body.name;
+  const email = req.body.email;
 
+  // Validate and sanitize the data (you can add more validation as needed)
+  // ...
+
+  // If data is valid, you can proceed to store it in a database
+  if (referralCode && name && email) {
+      // Replace the following with your database connection and insertion code
+      // ...
+      res.send('Form submitted successfully!');
+  } else {
+      res.send('Invalid data submitted!');
+  }
+});
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
